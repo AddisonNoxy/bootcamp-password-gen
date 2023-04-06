@@ -27,13 +27,10 @@ function generatePassword() {
   var symbolInput = "";
   var numberInput = "";
 
-  var passwordValid = false; //variable to check if all prompts have been answered in a valid manner
-
   passInput = prompt("Enter a length between 8 and 128 characters.");
-  passLength = passInput.replace(/\D/g,'');
-  console.log(passLength);
+  passLength = passInput.replace(/\D/g,''); //removes all non-digit characters from the input string
 
-  //Check if the password is a number between 8 and 128
+  //Compares the user input to the digit-only string, to check if extra characters were submitted
   if (passLength.length != passInput.length) {
     alert("Input must be only numbers!");
     return "Invalid password.";
@@ -41,6 +38,7 @@ function generatePassword() {
 
   passLength = Number(passLength); //convert the string to an integer
 
+  //Checks if the user input is between 8 and 128 characters
   if (passLength < 7 || passLength > 128) {
     alert("Input must be between 8 and 128 characters.");
     return "Invalid password.";
@@ -58,8 +56,6 @@ function generatePassword() {
   
   numberInput = prompt("Include numbers? Type Y or N.");
   hasNumbers = checkInput(numberInput);
-
-  console.log(passLength, hasLowercase, hasUppercase, hasSymbols, hasNumbers);
   
   let passString = ""; //generate an empty string for the password
 
@@ -88,10 +84,11 @@ function generatePassword() {
     console.log(passString);
   }
 
-  return passString;
+  return passString; //returns the finished password
 
 }
 
+//Checks user input to the prompts, recursively prompts the user if an incorrect response is given
 function checkInput(userInput) {
   console.log("Checking password!");
   if (userInput == "Y") {
